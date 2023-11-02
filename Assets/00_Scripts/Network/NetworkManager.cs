@@ -1,30 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using System;
-using System.Threading;
 
 public class NetworkManager : MonoBehaviour
 {
 	[SerializeField] int port = 23000;
 
+	//Host + 3 clients = 4  players
+	[SerializeField] int maxClients = 3;
+
 	public static NetworkManager Me {get; private set;}
 	public int Port { get {return port;} }
+	public int MaxClients {get {return maxClients;}}
 
 	private NetworkManagerState managerState;
 
 	//Public Functions
 	public bool StartHost ()
 	{
+		Debug.Log("Started Host Session");
 		managerState = new NetworkManagerHostState();
 		return managerState.Start();
 	}
 
 	public bool StartClient (string ip)
 	{
+		Debug.Log("Started Client Session");
 		managerState = new NetworkManagerClientState(ip);
 		return managerState.Start();
 	}
@@ -38,6 +37,11 @@ public class NetworkManager : MonoBehaviour
 		}
 		else
 			Destroy (this);
+	}
+
+	private void Start()
+	{
+		StartClient("127.0.0.1");
 	}
 
 	private void OnDestroy()

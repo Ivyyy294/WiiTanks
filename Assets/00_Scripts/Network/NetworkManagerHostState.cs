@@ -1,26 +1,36 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
-
+using System.Threading;
+using UnityEngine;
 
 class NetworkManagerHostState : NetworkManagerState
 {
-	Socket listenerSocket = null;
+	List <Socket> clientList = new List<Socket>();
+	Socket clientAcceptSocket = null;
+	Thread clientAcceptThread;
 
 	public override bool Start()
 	{
-		listenerSocket = GetHostSocket();
+		clientAcceptSocket = GetHostSocket();
 
-		//ToDo: Start accept thread
+		//Start accept thread
+		clientAcceptThread = new Thread (AcceptClients);
+		clientAcceptThread.Start();
 
-		return listenerSocket != null;
+		return clientAcceptSocket != null;
 	}
+
 	public override void Update()
 	{
-
 	}
+
 	public override void ShutDown()
 	{
-		CloseSocket (listenerSocket);
+		CloseSocket (clientAcceptSocket);
+
+		//Wait for Threads to finish
+		clientAcceptThread.Join();
 	}
 
 	Socket GetHostSocket ()
@@ -43,9 +53,13 @@ class NetworkManagerHostState : NetworkManagerState
 
 	void AcceptClients ()
 	{
-		while (listenerSocket != null)
+		while (clientAcceptSocket != null)
 		{
-			Socket clientSocket = listenerSocket.Accept();
+			Socket client = clientAcceptSocket.Accept();
+			Debug.Log ("Client connected. " + client.ToString()
+					+ ", IPEndpoint: " + client.RemoteEndPoint.ToString());
+
+			clientList.Add (client);
 		}
 	}
 }

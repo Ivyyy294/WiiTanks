@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-
+using System.Text;
 
 class NetworkManagerClientState : NetworkManagerState
 {
@@ -18,7 +18,20 @@ class NetworkManagerClientState : NetworkManagerState
 
 	public override void Update()
 	{
+		if (socket != null && socket.Connected)
+		{
+			NetworkPackage networkPackage = new NetworkPackage();
+			NetworkObject obj = NetworkObject.Head;
 
+			while (obj != null)
+			{
+				networkPackage.AddValue (new NetworkPackageValue (obj.GetSerializedData()));
+				obj = obj.Previous;
+			}
+
+			networkPackage.Send (socket);
+		}
+		//ToDo send data each Tick
 	}
 
 	public override void ShutDown()
@@ -29,7 +42,7 @@ class NetworkManagerClientState : NetworkManagerState
 	Socket GetClientSocket (string ip)
 	{
 		//Create TCP Socket
-		Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Udp);
+		Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
 		//Connect with Host
 		IPAddress iPAddress = null;
@@ -45,5 +58,6 @@ class NetworkManagerClientState : NetworkManagerState
 			return null;
 		}
 	}
+
 }
 
