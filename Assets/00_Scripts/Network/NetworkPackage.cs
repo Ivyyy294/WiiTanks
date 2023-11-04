@@ -12,6 +12,9 @@ public class NetworkPackage
 	private List<NetworkPackageValue> valueList = new List<NetworkPackageValue>();
 
 	//Public Values
+
+	public void Clear() {valueList.Clear();}
+
 	//Returns the count of NetworkPackageValues
 	public int Count { get {return valueList.Count;} }
 
@@ -47,9 +50,14 @@ public class NetworkPackage
 	//Try to read package data from socket
 	public bool Receive (Socket socket)
 	{
-		byte[] buffer = new byte[maxSize];
-		socket.Receive(buffer);
-		return ReadBytes(buffer);
+		if (socket != null)
+		{
+			byte[] buffer = new byte[maxSize];
+			socket.Receive(buffer);
+			return ReadBytes(buffer);
+		}
+
+		return false;
 	}
 
 	public byte[] GetSerializedData()

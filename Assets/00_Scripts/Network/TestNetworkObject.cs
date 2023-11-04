@@ -13,14 +13,13 @@ public class TestNetworkObject : NetworkObject
 
 	private void Update()
 	{
-		Vector3 newPos = Vector3.zero;
 		if (networkPackage.Count >= 3)
 		{
+			Vector3 newPos = Vector3.zero;
 			newPos.x = networkPackage.Value(0).GetFloat();
 			newPos.y = networkPackage.Value(1).GetFloat();
 			newPos.z = networkPackage.Value(2).GetFloat();
+			transform.position = newPos;
 		}
-
-		transform.position = newPos;
 	}
 }

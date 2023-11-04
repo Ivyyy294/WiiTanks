@@ -8,7 +8,7 @@ public abstract class NetworkObject : MonoBehaviour
 	public byte[] GetSerializedData()
 	{
 		//Clear Package
-		networkPackage = new NetworkPackage();
+		networkPackage.Clear();
 
 		//Call abstract SetPackageData
 		SetPackageData();
