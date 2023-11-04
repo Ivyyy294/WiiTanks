@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class NetworkObject : MonoBehaviour
 {
+	public bool Owner {get; set;}
 	public byte[] GetSerializedData()
 	{
 		//Clear Package
@@ -20,4 +21,5 @@ public abstract class NetworkObject : MonoBehaviour
 
 	protected abstract void SetPackageData();
 	protected NetworkPackage networkPackage = new NetworkPackage();
+	protected bool Host {get {return NetworkManager.Me.Host;}}
 }
