@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class TestNetworkObject : NetworkObject
 {
-	public override byte[] GetSerializedData()
+	protected override void SetPackageData()
 	{
-		NetworkPackage networkPackage = new NetworkPackage();
-		networkPackage.AddValue (new NetworkPackageValue ("Hello World"));
-		networkPackage.AddValue (new NetworkPackageValue ("255"));
-		return networkPackage.GetSerializedData();
+		networkPackage.AddValue (new NetworkPackageValue (transform.position.x));
+		networkPackage.AddValue (new NetworkPackageValue (transform.position.y));
+		networkPackage.AddValue (new NetworkPackageValue (transform.position.z));
 	}
-	public override bool DeserializeData (byte[] rawData)
+
+	private void Update()
 	{
-		NetworkPackage networkPackage = new NetworkPackage();
-		networkPackage.ReadBytes (rawData);
-		return true;
+		Vector3 newPos = Vector3.zero;
+		if (networkPackage.Count >= 3)
+		{
+			newPos.x = networkPackage.Value(0).GetFloat();
+			newPos.y = networkPackage.Value(1).GetFloat();
+			newPos.z = networkPackage.Value(2).GetFloat();
+		}
+
+		transform.position = newPos;
 	}
 }

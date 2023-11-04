@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
@@ -6,23 +7,31 @@ public class NetworkManager : MonoBehaviour
 
 	//Host + 3 clients = 4  players
 	[SerializeField] int maxClients = 3;
+	[SerializeField] List <NetworkObject> networkObjects;
+	[SerializeField] int tickRate = 30;
 
 	public static NetworkManager Me {get; private set;}
 	public int Port { get {return port;} }
 	public int MaxClients {get {return maxClients;}}
+	public bool Host { get {return isHost;} }
+	public List <NetworkObject> NetworkObjects {get {return networkObjects;}}
 
 	private NetworkManagerState managerState;
+	private bool isHost = false;
+	private float timer;
 
 	//Public Functions
-	public bool StartHost ()
+	public bool StartHost (/*port*/)
 	{
+		isHost = true;
 		Debug.Log("Started Host Session");
 		managerState = new NetworkManagerHostState();
 		return managerState.Start();
 	}
 
-	public bool StartClient (string ip)
+	public bool StartClient (string ip /*port*/)
 	{
+		isHost = false;
 		Debug.Log("Started Client Session");
 		managerState = new NetworkManagerClientState(ip);
 		return managerState.Start();
@@ -51,6 +60,12 @@ public class NetworkManager : MonoBehaviour
 
 	private void Update()
 	{
-		managerState?.Update();
+		if (timer < (1f / tickRate))
+			timer += Time.deltaTime;
+		else
+		{
+			timer = 0f;
+			managerState?.Update();
+		}
 	}
 }

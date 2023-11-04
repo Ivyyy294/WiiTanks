@@ -2,41 +2,76 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using UnityEngine;
 
 class NetworkManagerClientState : NetworkManagerState
 {
 	private string ip;
 	Socket socket = null;
+	Thread listenerThread;
 
 	public NetworkManagerClientState (string _ip) {ip = _ip;}
+	~NetworkManagerClientState()
+	{
+		ShutDown();
+	}
 
 	public override bool Start()
 	{
+		//Create client Socket
 		socket = GetClientSocket (ip);
-		return socket != null && socket.Connected;
+
+		bool ok = socket != null && socket.Connected;
+
+		if (ok)
+		{
+			//Start listener thread
+			listenerThread = new Thread (ReceiveData);
+			listenerThread.IsBackground = true;
+			listenerThread.Start();
+		}
+
+		return ok;
 	}
 
 	public override void Update()
 	{
 		if (socket != null && socket.Connected)
-		{
-			NetworkPackage networkPackage = new NetworkPackage();
-			NetworkObject obj = NetworkObject.Head;
-
-			while (obj != null)
-			{
-				networkPackage.AddValue (new NetworkPackageValue (obj.GetSerializedData()));
-				obj = obj.Previous;
-			}
-
-			networkPackage.Send (socket);
-		}
-		//ToDo send data each Tick
+			SendData();
 	}
 
 	public override void ShutDown()
 	{
 		CloseSocket (socket);
+		listenerThread.Join();
+	}
+
+	void SendData()
+	{
+		NetworkPackage networkPackage = new NetworkPackage();
+
+		foreach (NetworkObject i in NetworkManager.Me.NetworkObjects)
+			networkPackage.AddValue (new NetworkPackageValue (i.GetSerializedData()));
+
+		networkPackage.Send (socket);
+	}
+
+	void ReceiveData()
+	{
+		NetworkPackage networkPackage = new NetworkPackage();
+
+		while (socket != null && socket.Connected)
+		{
+			networkPackage.Receive (socket);
+
+			//For each NetworkObject in NetworkManager
+			for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)
+			{
+				if (i < networkPackage.Count)
+					NetworkManager.Me.NetworkObjects[i].DeserializeData (networkPackage.Value(i).GetBytes());
+			}
+		}
 	}
 
 	Socket GetClientSocket (string ip)

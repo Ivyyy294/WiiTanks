@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   port: 23000
+  maxClients: 3
+  networkObjects: []
+  tickRate: 30
