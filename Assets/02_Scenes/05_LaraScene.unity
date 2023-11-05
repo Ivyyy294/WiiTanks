@@ -456,7 +456,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6831031961551826641, guid: 1a7f55ee14b2c6b4da1a550debc1d260, type: 3}
       propertyPath: host
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6831031961551826641, guid: 1a7f55ee14b2c6b4da1a550debc1d260, type: 3}
       propertyPath: networkObjects.Array.size
