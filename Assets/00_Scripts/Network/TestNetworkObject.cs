@@ -5,17 +5,19 @@ using UnityEngine;
 public class TestNetworkObject : NetworkObject
 {
 	[SerializeField] float speed = 5f;
+	Rigidbody rigidbody;
 
 	private void Start()
 	{
-		GetComponent <Rigidbody>().isKinematic = !Owner;
+		rigidbody = GetComponent <Rigidbody>();
+		rigidbody.isKinematic = !Owner;
 	}
 
 	protected override void SetPackageData()
 	{
-		networkPackage.AddValue (new NetworkPackageValue (transform.position.x));
-		networkPackage.AddValue (new NetworkPackageValue (transform.position.y));
-		networkPackage.AddValue (new NetworkPackageValue (transform.position.z));
+		networkPackage.AddValue (new NetworkPackageValue (rigidbody.position.x));
+		networkPackage.AddValue (new NetworkPackageValue (rigidbody.position.y));
+		networkPackage.AddValue (new NetworkPackageValue (rigidbody.position.z));
 	}
 
 	private void Update()
@@ -25,7 +27,7 @@ public class TestNetworkObject : NetworkObject
 			Vector3 input = Vector3.zero;
 			input += Vector3.up * Input.GetAxis ("Vertical");
 			input += Vector3.right * Input.GetAxis ("Horizontal");
-			transform.position += input.normalized * speed * Time.deltaTime;
+			rigidbody.MovePosition (rigidbody.position + input.normalized * speed * Time.deltaTime);
 		}
 		else if (networkPackage.Count >= 3)
 		{
@@ -33,7 +35,7 @@ public class TestNetworkObject : NetworkObject
 			newPos.x = networkPackage.Value(0).GetFloat();
 			newPos.y = networkPackage.Value(1).GetFloat();
 			newPos.z = networkPackage.Value(2).GetFloat();
-			transform.position = newPos;
+			rigidbody.position = newPos;
 		}
 	}
 }
