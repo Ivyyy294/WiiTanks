@@ -6,6 +6,11 @@ public class TestNetworkObject : NetworkObject
 {
 	[SerializeField] float speed = 5f;
 
+	private void Start()
+	{
+		GetComponent <Rigidbody>().isKinematic = !Owner;
+	}
+
 	protected override void SetPackageData()
 	{
 		networkPackage.AddValue (new NetworkPackageValue (transform.position.x));
