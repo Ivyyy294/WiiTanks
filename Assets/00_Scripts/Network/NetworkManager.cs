@@ -9,6 +9,7 @@ public class NetworkManager : MonoBehaviour
 	[SerializeField] int maxClients = 3;
 	[SerializeField] List <NetworkObject> networkObjects;
 	[SerializeField] int tickRate = 30;
+	[SerializeField] bool host = false;
 
 	public static NetworkManager Me {get; private set;}
 	public int Port { get {return port;} }
@@ -50,7 +51,18 @@ public class NetworkManager : MonoBehaviour
 
 	private void Start()
 	{
-		StartClient("127.0.0.1");
+		if (host)
+		{
+			networkObjects[0].Owner = true;
+			networkObjects[1].Owner = false;
+			StartHost();
+		}
+		else
+		{
+			networkObjects[0].Owner = false;
+			networkObjects[1].Owner = true;
+			StartClient("127.0.0.1");
+		}
 	}
 
 	private void OnDestroy()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TestNetworkObject : NetworkObject
 {
+	[SerializeField] float speed = 5f;
+
 	protected override void SetPackageData()
 	{
 		networkPackage.AddValue (new NetworkPackageValue (transform.position.x));
@@ -13,7 +15,14 @@ public class TestNetworkObject : NetworkObject
 
 	private void Update()
 	{
-		if (networkPackage.Count >= 3)
+		if (Owner)
+		{
+			Vector3 input = Vector3.zero;
+			input += Vector3.up * Input.GetAxis ("Vertical");
+			input += Vector3.right * Input.GetAxis ("Horizontal");
+			transform.position += input.normalized * speed * Time.deltaTime;
+		}
+		else if (networkPackage.Count >= 3)
 		{
 			Vector3 newPos = Vector3.zero;
 			newPos.x = networkPackage.Value(0).GetFloat();

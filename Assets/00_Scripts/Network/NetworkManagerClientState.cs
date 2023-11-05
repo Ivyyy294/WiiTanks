@@ -26,6 +26,7 @@ class NetworkManagerClientState : NetworkManagerState
 
 		if (ok)
 		{
+			Debug.Log("Conntected to Host!");
 			//Start listener thread
 			listenerThread = new Thread (ReceiveData);
 			listenerThread.IsBackground = true;
@@ -44,15 +45,23 @@ class NetworkManagerClientState : NetworkManagerState
 	public override void ShutDown()
 	{
 		CloseSocket (socket);
-		listenerThread.Join();
+
+		if (listenerThread != null)
+			listenerThread.Join();
 	}
 
 	void SendData()
 	{
 		NetworkPackage networkPackage = new NetworkPackage();
 
-		foreach (NetworkObject i in NetworkManager.Me.NetworkObjects)
-			networkPackage.AddValue (new NetworkPackageValue (i.GetSerializedData()));
+		//Only Update owned NetworkObject
+		for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)
+		{
+			NetworkObject networkObject = NetworkManager.Me.NetworkObjects[i];
+
+			if (networkObject.Owner)
+				networkPackage.AddValue (GetNetObjectAsValue (i, networkObject));
+		}
 
 		networkPackage.Send (socket);
 	}
@@ -65,12 +74,9 @@ class NetworkManagerClientState : NetworkManagerState
 		{
 			networkPackage.Receive (socket);
 
-			//For each NetworkObject in NetworkManager
-			for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)
-			{
-				if (i < networkPackage.Count)
-					NetworkManager.Me.NetworkObjects[i].DeserializeData (networkPackage.Value(i).GetBytes());
-			}
+			//For each Value in networkPackage
+			for (int i = 0; i < networkPackage.Count; ++i)
+				SetNetObjectFromValue (networkPackage.Value(i));
 		}
 	}
 
