@@ -4,7 +4,6 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviour
 {
 	[SerializeField] int port = 23000;
-
 	//Host + 3 clients = 4  players
 	[SerializeField] int maxClients = 3;
 	[SerializeField] List <NetworkObject> networkObjects;
@@ -14,28 +13,41 @@ public class NetworkManager : MonoBehaviour
 	public static NetworkManager Me {get; private set;}
 	public int Port { get {return port;} }
 	public int MaxClients {get {return maxClients;}}
-	public bool Host { get {return isHost;} }
+	public bool Host { get {return host;} }
 	public List <NetworkObject> NetworkObjects {get {return networkObjects;}}
 
 	private NetworkManagerState managerState;
-	private bool isHost = false;
-	private float timer;
+	private float timer = 0f;
 
 	//Public Functions
-	public bool StartHost (/*port*/)
+	public bool StartHost (int _port)
 	{
-		isHost = true;
-		Debug.Log("Started Host Session");
-		managerState = new NetworkManagerHostState();
-		return managerState.Start();
+		if (managerState == null)
+		{
+			port = _port;
+			host = true;
+			Debug.Log("Started Host Session");
+			managerState = new NetworkManagerHostState();
+			InitNetworkObjects();
+			return managerState.Start();
+		}
+		else
+			return false;
 	}
 
-	public bool StartClient (string ip /*port*/)
+	public bool StartClient (string ip, int _port)
 	{
-		isHost = false;
-		Debug.Log("Started Client Session");
-		managerState = new NetworkManagerClientState(ip);
-		return managerState.Start();
+		if (managerState == null)
+		{
+			port = _port;
+			host = false;
+			Debug.Log("Started Client Session");
+			managerState = new NetworkManagerClientState(ip);
+			InitNetworkObjects();
+			return managerState.Start();
+		}
+		else
+			return false;
 	}
 
 	private void Awake()
@@ -49,22 +61,6 @@ public class NetworkManager : MonoBehaviour
 			Destroy (this);
 	}
 
-	private void Start()
-	{
-		if (host)
-		{
-			networkObjects[0].Owner = true;
-			networkObjects[1].Owner = false;
-			StartHost();
-		}
-		else
-		{
-			networkObjects[0].Owner = false;
-			networkObjects[1].Owner = true;
-			StartClient("127.0.0.1");
-		}
-	}
-
 	private void OnDestroy()
 	{
 		managerState?.ShutDown();
@@ -76,8 +72,23 @@ public class NetworkManager : MonoBehaviour
 			timer += Time.deltaTime;
 		else
 		{
-			timer = 0f;
 			managerState?.Update();
+			timer = 0f;
+		}
+	}
+
+	//Sets the Rigidbody of all not owned NetworkObject to kinematic
+	private void InitNetworkObjects()
+	{
+		foreach (NetworkObject i in networkObjects)
+		{
+			if (!i.Owner)
+			{
+				Rigidbody rb = i.GetComponent<Rigidbody>();
+
+				if (rb != null)
+					rb.isKinematic = true;
+			}
 		}
 	}
 }

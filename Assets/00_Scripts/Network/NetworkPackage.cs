@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Net.Sockets;
+using UnityEngine;
 
 public class NetworkPackage
 {
-	private int maxSize = 2048;
 	private List<NetworkPackageValue> valueList = new List<NetworkPackageValue>();
 
 	//Public Values
@@ -95,6 +95,7 @@ public class NetworkPackage
 		}
 		catch (Exception excp)
 		{
+			Debug.Log(excp);
 			return false;
 		}
 	}

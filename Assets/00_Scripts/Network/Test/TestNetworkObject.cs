@@ -10,7 +10,6 @@ public class TestNetworkObject : NetworkObject
 	private void Start()
 	{
 		myRigidbody = GetComponent <Rigidbody>();
-		myRigidbody.isKinematic = !Owner;
 	}
 
 	protected override void SetPackageData()
