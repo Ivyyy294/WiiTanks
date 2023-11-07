@@ -2,14 +2,14 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using UnityEngine;
 
 class NetworkManagerClientState : NetworkManagerState
 {
 	private string ip;
 	Socket socket = null;
-	Thread listenerThread;
+	NetworkUdpClientThread udpClientThread = null;
+	NetworkPackage networkPackage = new NetworkPackage();
 
 	public NetworkManagerClientState (string _ip) {ip = _ip;}
 	~NetworkManagerClientState()
@@ -27,10 +27,10 @@ class NetworkManagerClientState : NetworkManagerState
 		if (ok)
 		{
 			Debug.Log("Conntected to Host!");
+		
 			//Start listener thread
-			listenerThread = new Thread (ReceiveData);
-			listenerThread.IsBackground = true;
-			listenerThread.Start();
+			udpClientThread = new NetworkUdpClientThread (socket);
+			udpClientThread.Start();
 		}
 
 		return ok;
@@ -46,13 +46,14 @@ class NetworkManagerClientState : NetworkManagerState
 	{
 		CloseSocket (socket);
 
-		if (listenerThread != null)
-			listenerThread.Join();
+		if (udpClientThread != null)
+			udpClientThread.Shutdown();
 	}
 
 	void SendData()
 	{
-		NetworkPackage networkPackage = new NetworkPackage();
+		//Reset networkPackage
+		networkPackage.Clear();
 
 		//Only Update owned NetworkObject
 		for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)
@@ -63,21 +64,7 @@ class NetworkManagerClientState : NetworkManagerState
 				networkPackage.AddValue (GetNetObjectAsValue (i, networkObject));
 		}
 
-		networkPackage.Send (socket);
-	}
-
-	void ReceiveData()
-	{
-		NetworkPackage networkPackage = new NetworkPackage();
-
-		while (socket != null && socket.Connected)
-		{
-			networkPackage.Receive (socket);
-
-			//For each Value in networkPackage
-			for (int i = 0; i < networkPackage.Count; ++i)
-				SetNetObjectFromValue (networkPackage.Value(i));
-		}
+		udpClientThread.SendData (networkPackage.GetSerializedData());
 	}
 
 	Socket GetClientSocket (string ip)

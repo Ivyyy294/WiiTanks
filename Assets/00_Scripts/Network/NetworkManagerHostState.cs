@@ -5,37 +5,9 @@ using System.Net.Sockets;
 using System.Threading;
 using UnityEngine;
 
-class HandleClient
-{
-	public Socket socket;
-	Thread thread;
-
-	public void Run()
-	{
-		thread = new Thread (RunIntern);
-		thread.IsBackground = true;
-		thread.Start();
-	}
-
-	void RunIntern()
-	{
-		NetworkPackage container = new NetworkPackage();
-
-		while (socket != null && socket.Connected)
-		{
-			container.Receive (socket);
-
-			//For each value in NetworkPackage
-			for (int i = 0; i < container.Count; ++i)
-				NetworkManagerState.SetNetObjectFromValue (container.Value(i));
-		}
-	}
-}
-
-
 class NetworkManagerHostState : NetworkManagerState
 {
-	List <Socket> clientList = new List<Socket>();
+	List <NetworkUdpClientThread> clientList = new List<NetworkUdpClientThread>();
 	Socket clientAcceptSocket = null;
 	Thread clientAcceptThread;
 
@@ -58,9 +30,11 @@ class NetworkManagerHostState : NetworkManagerState
 		for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)
 			networkPackage.AddValue (GetNetObjectAsValue (i, NetworkManager.Me.NetworkObjects[i]));
 
+		byte[] data = networkPackage.GetSerializedData();
+
 		//Sent the data of all NetworkObjects to all clients
-		foreach (Socket client in clientList)
-			networkPackage.Send (client);
+		foreach (NetworkUdpClientThread client in clientList)
+			client.SendData (data);
 	}
 
 	public override void ShutDown()
@@ -69,8 +43,8 @@ class NetworkManagerHostState : NetworkManagerState
 		CloseSocket (clientAcceptSocket);
 
 		//Close all client sockets
-		foreach (Socket client in clientList)
-			CloseSocket (client);
+		foreach (NetworkUdpClientThread client in clientList)
+			client.Shutdown();
 
 		//Wait for Threads to finish
 		clientAcceptThread.Join();
@@ -101,17 +75,24 @@ class NetworkManagerHostState : NetworkManagerState
 	//Creates a new HandleClient Thread for each Client
 	void AcceptClients ()
 	{
-		while (clientAcceptSocket != null)
+		try
 		{
-			Socket client = clientAcceptSocket.Accept();
-			Debug.Log ("Client connected. " + client.ToString()
-					+ ", IPEndpoint: " + client.RemoteEndPoint.ToString());
+			while (clientList.Count < NetworkManager.Me.MaxClients)
+			{
+				Socket client = clientAcceptSocket.Accept();
+				Debug.Log ("Client connected. " + client.ToString()
+						+ ", IPEndpoint: " + client.RemoteEndPoint.ToString());
 
-			clientList.Add (client);
+				NetworkUdpClientThread handleClient = new NetworkUdpClientThread(client);
+				handleClient.Start();
+				clientList.Add (handleClient);
 
-			HandleClient handleClient = new HandleClient();
-			handleClient.socket = client;
-			handleClient.Run();
+				CloseSocket(client);
+			}
+		}
+		catch (Exception e)
+		{
+			Debug.Log (e);
 		}
 	}
 }

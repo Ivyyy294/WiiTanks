@@ -24,5 +24,5 @@ public abstract class NetworkWorkerThread
 	}
 
 	protected abstract void ReceiveData();
-	protected abstract bool SendData();
+	public abstract bool SendData (byte[] data);
 }

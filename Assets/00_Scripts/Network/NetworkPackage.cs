@@ -41,25 +41,6 @@ public class NetworkPackage
 		return size;
 	}
 
-	//Sends the serilized content via the socket 
-	public void Send(Socket socket)
-	{
-		socket.Send(GetSerializedData());
-	}
-
-	//Try to read package data from socket
-	public bool Receive (Socket socket)
-	{
-		if (socket != null)
-		{
-			byte[] buffer = new byte[maxSize];
-			socket.Receive(buffer);
-			return ReadBytes(buffer);
-		}
-
-		return false;
-	}
-
 	public byte[] GetSerializedData()
 	{
 		//Init byte array with package size
