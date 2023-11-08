@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5087672}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,9 +215,125 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8661486021770149363, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8360782646896198359, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7085590311447112428, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7064970319409770814, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7025448359769335914, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5294623148841104319, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5151492872390713093, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4884085224703812434, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2552863938387506200, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2230265886965952562, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -752350814001785511, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -733259970273584078, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -476444204245622208, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
       propertyPath: m_Name
       value: Arwing
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270074515080994578, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437947067331085294, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1515181604891085352, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890275766136547907, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917932472458877014, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431459953472748382, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539729119794044479, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683640450831690780, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753945941532393453, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7375410344078087219, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408044124537627211, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8347085830567757124, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849545145267267287, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911173776666288867, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045734823256612397, guid: 00d1ae7a2d554164bb44f1265fb47024, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -489,7 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131356195}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AimIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 155981439}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294593924}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 318236358}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +886,7 @@ GameObject:
   - component: {fileID: 560180773}
   - component: {fileID: 560180775}
   - component: {fileID: 560180774}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainEngine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5706,7 +5822,7 @@ GameObject:
   - component: {fileID: 757185308}
   - component: {fileID: 757185307}
   - component: {fileID: 757185306}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5808,7 +5924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 934791168}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5945,7 +6061,7 @@ GameObject:
   - component: {fileID: 1305311860}
   - component: {fileID: 1305311859}
   - component: {fileID: 1305311858}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ArrowCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6216,7 +6332,7 @@ GameObject:
   - component: {fileID: 1702546361}
   - component: {fileID: 1702546360}
   - component: {fileID: 1702546359}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6257,6 +6373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
+  temporaryProjectile: {fileID: 2783548849352094086, guid: 6ab739d31b97cf04785a8171f9e57df2, type: 3}
 --- !u!114 &1702546361
 MonoBehaviour:
   m_ObjectHideFlags: 0

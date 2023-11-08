@@ -10,7 +10,8 @@ public class ShipAbilities : MonoBehaviour
 
     public float cooldown;
     private float timerCooldown;
-    
+    public GameObject temporaryProjectile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,16 +27,16 @@ public class ShipAbilities : MonoBehaviour
         {
             if (inputHandler.shoot == true)
             {
-                /*
-                Vector3 projectileDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
+
+/*              Vector3 projectileDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
                 projectileDirection.Normalize();
                 Quaternion projectileAngle = Quaternion.LookRotation(projectileDirection);
-
-               testProjectile projectile = Instantiate(temporaryProjectile, transform.position, projectileAngle);
-               projectile.projectileDirection = projectileDirection;
-
+                projectile.projectileDirection = projectileDirection;*/
+                
+                GameObject projectile = Instantiate(temporaryProjectile, transform.position, transform.rotation);
+                
                 timerCooldown = 0;
-                */
+
             }
         }
        

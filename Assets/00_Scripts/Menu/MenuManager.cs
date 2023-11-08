@@ -14,7 +14,6 @@ public class MenuManager : MonoBehaviour
 
     public void OnUIActive()
     {
-        print(inputHandler.menuOpened);
         if (inputHandler.menuOpened)
         {
             canvas.SetActive(true);
