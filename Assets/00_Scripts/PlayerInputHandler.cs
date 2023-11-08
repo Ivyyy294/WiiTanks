@@ -14,13 +14,14 @@ public class PlayerInputHandler : MonoBehaviour
     public bool melee;
     public bool dash;
 
-    
-   
+    //menu buttons
+    public bool menuOpened;
+    public bool cancel;
+    PlayerInput playerInput;
 
     void Start()
     {
-      
-    
+        playerInput = GetComponent<PlayerInput>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -50,5 +51,32 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnDash(InputAction.CallbackContext context)
     {
         dash = context.action.triggered;
+    }
+
+    //switching action maps
+    public void OnActionMapChange(InputAction.CallbackContext context)
+    {
+        if (playerInput.currentActionMap.name == "Player")
+        {
+            SetActionMapActive("UI");
+            menuOpened = true;
+            return;
+        }
+        else if (playerInput.currentActionMap.name == "UI")
+        {
+            SetActionMapActive("Player");
+            menuOpened = false;
+            return;
+        }
+    }
+
+    private void SetActionMapActive(string mapName)
+    {
+        string currActionMap = playerInput.currentActionMap.name;
+
+        playerInput.actions.FindActionMap(currActionMap).Disable();
+        playerInput.actions.FindActionMap(mapName).Enable();
+
+        playerInput.SwitchCurrentActionMap(mapName);
     }
 }
