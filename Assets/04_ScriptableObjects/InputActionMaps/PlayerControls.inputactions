@@ -155,28 +155,6 @@
                 },
                 {
                     "name": "",
-                    "id": "4f351697-6a4c-4d18-869f-8fc06e337b46",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a7523a8f-2714-4a91-98d8-79a11a0ff516",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f85b15b2-7a49-46f6-a917-9f4636004b19",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
