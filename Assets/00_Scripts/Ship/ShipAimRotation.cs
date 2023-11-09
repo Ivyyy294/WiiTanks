@@ -23,6 +23,6 @@ public class ShipAimRotation : MonoBehaviour
     {
 
         Vector3 lookDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
-        //aimArrow.transform.forward = lookDirection;
+        aimArrow.transform.forward = lookDirection;
     }
 }

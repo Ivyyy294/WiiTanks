@@ -28,12 +28,10 @@ public class ShipAbilities : MonoBehaviour
             if (inputHandler.shoot == true)
             {
 
-/*              Vector3 projectileDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
+                Vector3 projectileDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
                 projectileDirection.Normalize();
                 Quaternion projectileAngle = Quaternion.LookRotation(projectileDirection);
-                projectile.projectileDirection = projectileDirection;*/
-                
-                GameObject projectile = Instantiate(temporaryProjectile, transform.position, transform.rotation);
+                GameObject projectile = Instantiate(temporaryProjectile, transform.position, projectileAngle);
                 
                 timerCooldown = 0;
 
