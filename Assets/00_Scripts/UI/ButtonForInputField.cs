@@ -13,6 +13,8 @@ public class ButtonForInputField : MonoBehaviour
     [SerializeField] private Button hostButton;
     [SerializeField] private Button joinButton;
 
+    private bool connectionError = false;
+
     private NetworkManager networkManager;
     
     //public GameObject targetObject;
@@ -40,6 +42,7 @@ public class ButtonForInputField : MonoBehaviour
         int port = int.Parse(hostPortInputField.text);
         networkManager.StartHost(port);
         Debug.Log("I am the host");
+        SceneManager.LoadScene(2);
     }
 
     private void StartClient()
@@ -51,6 +54,7 @@ public class ButtonForInputField : MonoBehaviour
         //Debug.Log(port);
         Debug.Log(joinPortInputField);
         SceneManager.LoadScene(2);
+        
 
     }
 }
