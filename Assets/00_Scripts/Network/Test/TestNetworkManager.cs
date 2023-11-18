@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestNetworkManager : MonoBehaviour
 {
 	[SerializeField] bool startHost = false;
+
     // Start is called before the first frame update
    	private void Start()
 	{

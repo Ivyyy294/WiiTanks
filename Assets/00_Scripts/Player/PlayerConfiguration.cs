@@ -8,4 +8,5 @@ public struct PlayerConfiguration
 {
 	public string name;
 	public GameObject playerObj;
+	public bool ready;
 }
