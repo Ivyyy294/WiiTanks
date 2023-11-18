@@ -28,6 +28,9 @@ class NetworkManagerClientState : NetworkManagerState
 		{
 			Debug.Log("Conntected to Host!");
 		
+			if (NetworkManager.Me.onConnectedToHost != null)
+				NetworkManager.Me.onConnectedToHost (socket);
+
 			//Start listener thread
 			udpClientThread = new NetworkUdpClientThread (socket);
 			udpClientThread.Start();

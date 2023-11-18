@@ -87,6 +87,9 @@ class NetworkManagerHostState : NetworkManagerState
 				handleClient.Start();
 				clientList.Add (handleClient);
 
+				if (NetworkManager.Me.onClientConnected != null)
+					NetworkManager.Me.onClientConnected (clientList.Count - 1, client);
+
 				CloseSocket(client);
 			}
 		}

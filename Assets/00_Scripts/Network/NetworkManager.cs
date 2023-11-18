@@ -1,21 +1,31 @@
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
+	//Serialized Values
 	[SerializeField] int port = 23000;
 	//Host + 3 clients = 4  players
 	[SerializeField] int maxClients = 3;
 	[SerializeField] List <NetworkObject> networkObjects;
 	[SerializeField] int tickRate = 30;
-	bool host = false;
 
+	//Public Values
 	public static NetworkManager Me {get; private set;}
 	public int Port { get {return port;} }
 	public int MaxClients {get {return maxClients;}}
 	public bool Host { get {return host;} }
 	public List <NetworkObject> NetworkObjects {get {return networkObjects;}}
 
+	public delegate void OnClientConnected (int clientNumber, Socket socket);
+	public OnClientConnected onClientConnected = null;
+
+	public delegate void OnConnectedToHost (Socket socket);
+	public OnConnectedToHost onConnectedToHost = null;
+
+	//Private Values
+	bool host = false;
 	private NetworkManagerState managerState;
 	private float timer = 0f;
 
