@@ -8,7 +8,7 @@ public class NetworkManager : MonoBehaviour
 	[SerializeField] int port = 23000;
 	//Host + 3 clients = 4  players
 	[SerializeField] int maxClients = 3;
-	[SerializeField] List <NetworkObject> networkObjects;
+	[SerializeField] List <GameObject> networkObjects;
 	[SerializeField] int tickRate = 30;
 
 	//Public Values
@@ -16,7 +16,7 @@ public class NetworkManager : MonoBehaviour
 	public int Port { get {return port;} }
 	public int MaxClients {get {return maxClients;}}
 	public bool Host { get {return host;} }
-	public List <NetworkObject> NetworkObjects {get {return networkObjects;}}
+	public List <NetworkObject> NetworkObjects {get {return networkComponents;}}
 
 	public delegate void OnClientConnected (int clientNumber, Socket socket);
 	public OnClientConnected onClientConnected = null;
@@ -28,6 +28,7 @@ public class NetworkManager : MonoBehaviour
 	bool host = false;
 	private NetworkManagerState managerState;
 	private float timer = 0f;
+	[SerializeField] List <NetworkObject> networkComponents;
 
 	//Public Functions
 	public bool StartHost (int _port)
@@ -90,15 +91,30 @@ public class NetworkManager : MonoBehaviour
 	//Sets the Rigidbody of all not owned NetworkObject to kinematic
 	private void InitNetworkObjects()
 	{
-		foreach (NetworkObject i in networkObjects)
-		{
-			if (!i.Owner)
-			{
-				Rigidbody rb = i.GetComponent<Rigidbody>();
+		networkComponents = new List<NetworkObject>();
 
-				if (rb != null)
-					rb.isKinematic = true;
+		//Create networkComponent list from GameObjects
+		foreach (GameObject i in networkObjects)
+		{
+			//Get List of all attached NetworkObjects
+			var netCompList = i.GetComponentsInChildren <NetworkObject>(true);
+
+			foreach (NetworkObject j in netCompList)
+			{
+				if (!networkComponents.Contains(j))
+					networkComponents.Add (j);
 			}
 		}
+
+		//foreach (NetworkObject i in networkComponents)
+		//{
+		//	if (!i.Owner)
+		//	{
+		//		Rigidbody rb = i.GetComponent<Rigidbody>();
+
+		//		if (rb != null)
+		//			rb.isKinematic = true;
+		//	}
+		//}
 	}
 }
