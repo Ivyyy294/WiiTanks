@@ -8,7 +8,7 @@ public class NetworkManager : MonoBehaviour
 	[SerializeField] int maxClients = 3;
 	[SerializeField] List <NetworkObject> networkObjects;
 	[SerializeField] int tickRate = 30;
-	[SerializeField] bool host = false;
+	bool host = false;
 
 	public static NetworkManager Me {get; private set;}
 	public int Port { get {return port;} }
