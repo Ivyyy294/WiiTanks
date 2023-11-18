@@ -87,8 +87,9 @@ class NetworkManagerHostState : NetworkManagerState
 				handleClient.Start();
 				clientList.Add (handleClient);
 
+				//clientList is 1 short of player list so clientList.Count is equal to client index
 				if (NetworkManager.Me.onClientConnected != null)
-					NetworkManager.Me.onClientConnected (clientList.Count - 1, client);
+					NetworkManager.Me.onClientConnected (clientList.Count, client);
 
 				CloseSocket(client);
 			}

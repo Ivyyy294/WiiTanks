@@ -23,6 +23,7 @@ public class TestNetworkObject : NetworkObject
 	{
 		if (Owner)
 		{
+			myRigidbody.isKinematic = false;
 			Vector3 input = Vector3.zero;
 			input += Vector3.up * Input.GetAxis ("Vertical");
 			input += Vector3.right * Input.GetAxis ("Horizontal");
@@ -30,6 +31,7 @@ public class TestNetworkObject : NetworkObject
 		}
 		else if (networkPackage.Count >= 3)
 		{
+			myRigidbody.isKinematic = true;
 			Vector3 newPos = Vector3.zero;
 			newPos.x = networkPackage.Value(0).GetFloat();
 			newPos.y = networkPackage.Value(1).GetFloat();

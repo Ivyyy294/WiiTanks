@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerConfigurationManager : NetworkObject
 {
+	public List <PlayerConfiguration> playerConfigurationsList = new List<PlayerConfiguration>();
 	public static PlayerConfigurationManager Me {get; private set;}
 	public int PlayerCount { get;set;}
 
@@ -13,6 +14,8 @@ public class PlayerConfigurationManager : NetworkObject
 	//Don't get synced!
 	//Will be set once after establishing the connection
 	public int LocalPlayerId { get; set;}
+
+	bool hostInitDone = false;
 
 	void Awake()
     {
@@ -42,10 +45,12 @@ public class PlayerConfigurationManager : NetworkObject
     void Update()
     {
 		//The Host is owner of the PlayerConfigManager
-        if (NetworkManager.Me.Host)
+        if (NetworkManager.Me.Host && !hostInitDone)
 		{
 			Owner = true;
 			LocalPlayerId = 0;
+			InitPlayerOwnerState();
+			hostInitDone = true;
 		}
 
 		//Update player count und clients
@@ -66,6 +71,19 @@ public class PlayerConfigurationManager : NetworkObject
 		byte[] buffer = new byte[sizeof (int)];
 		int bysteCount = socket.Receive (buffer);
 		LocalPlayerId = BitConverter.ToInt32 (buffer, 0);
+		InitPlayerOwnerState();
 		Debug.Log ("LocalPlayerId: " + LocalPlayerId);
+	}
+
+	void InitPlayerOwnerState ()
+	{
+		for (int i = 0; i < playerConfigurationsList.Count; ++i)
+		{
+			PlayerConfiguration player = playerConfigurationsList[i];
+			var netComponentList = player.playerObj.GetComponentsInChildren <NetworkObject>();
+
+			foreach (var netComponent in netComponentList)
+				netComponent.Owner = i == LocalPlayerId;
+		}
 	}
 }

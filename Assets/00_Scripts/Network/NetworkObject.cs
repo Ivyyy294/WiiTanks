@@ -11,6 +11,7 @@ public abstract class NetworkObject : MonoBehaviour
 	}
 
 	public bool Owner {get; set;}
+
 	public byte[] GetSerializedData()
 	{
 		//Clear Package

@@ -123,23 +123,33 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &143504244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1175776350103753873, guid: b3363ff61749d214f83e38a2bf102e00, type: 3}
+  m_PrefabInstance: {fileID: 1552895385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &143504245 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7342913280250258556, guid: b3363ff61749d214f83e38a2bf102e00, type: 3}
   m_PrefabInstance: {fileID: 1552895385}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 143504244}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9132be726f629614c99d62e46e8dc954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &432287644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1175776350103753873, guid: b3363ff61749d214f83e38a2bf102e00, type: 3}
+  m_PrefabInstance: {fileID: 2826577827876622823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &432287645 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7342913280250258556, guid: b3363ff61749d214f83e38a2bf102e00, type: 3}
   m_PrefabInstance: {fileID: 2826577827876622823}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 432287644}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9132be726f629614c99d62e46e8dc954, type: 3}
@@ -611,6 +621,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2495292265401711701, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: playerConfigurationsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495292265401711701, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: playerConfigurationsList.Array.data[0].name
+      value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495292265401711701, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: playerConfigurationsList.Array.data[1].name
+      value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495292265401711701, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: playerConfigurationsList.Array.data[0].playerObj
+      value: 
+      objectReference: {fileID: 432287644}
+    - target: {fileID: 2495292265401711701, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: playerConfigurationsList.Array.data[1].playerObj
+      value: 
+      objectReference: {fileID: 143504244}
     - target: {fileID: 3738493158078055555, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
       propertyPath: networkObjects.Array.size
       value: 3
