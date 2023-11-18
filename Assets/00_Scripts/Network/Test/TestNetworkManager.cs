@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class TestNetworkManager : MonoBehaviour
 {
+	[SerializeField] bool startHost = false;
     // Start is called before the first frame update
    	private void Start()
 	{
 		var networkObjects = NetworkManager.Me.NetworkObjects;
 
-		if (NetworkManager.Me.Host)
+		if (startHost)
 		{
-			networkObjects[0].Owner = true;
-			networkObjects[1].Owner = false;
+			networkObjects[1].Owner = true;
+			networkObjects[2].Owner = false;
 			NetworkManager.Me.StartHost(23000);
 		}
 		else
 		{
-			networkObjects[0].Owner = false;
-			networkObjects[1].Owner = true;
+			networkObjects[1].Owner = false;
+			networkObjects[2].Owner = true;
 			NetworkManager.Me.StartClient("127.0.0.1", 23000);
 		}
 	}

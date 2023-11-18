@@ -123,6 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &143504245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7342913280250258556, guid: b3363ff61749d214f83e38a2bf102e00, type: 3}
+  m_PrefabInstance: {fileID: 1552895385}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9132be726f629614c99d62e46e8dc954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &432287645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7342913280250258556, guid: b3363ff61749d214f83e38a2bf102e00, type: 3}
+  m_PrefabInstance: {fileID: 2826577827876622823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9132be726f629614c99d62e46e8dc954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &741802552
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28162d805858b614a9965140607d1cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHost: 1
 --- !u!1001 &2826577827876622823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -588,6 +611,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3738493158078055555, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: networkObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3738493158078055555, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: networkObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 432287645}
+    - target: {fileID: 3738493158078055555, guid: d677a9a120771da4ca817ac7d22355ad, type: 3}
+      propertyPath: networkObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 143504245}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

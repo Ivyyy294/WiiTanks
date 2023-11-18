@@ -56,6 +56,7 @@ public class PlayerConfigurationManager : NetworkObject
 	void OnClientConnected(int clientNumber, Socket socket)
 	{
 		//Send client player index to client
+		Debug.Log ("Send Client player id: " + clientNumber);
 		socket.Send (BitConverter.GetBytes (clientNumber));
 	}
 
@@ -65,5 +66,6 @@ public class PlayerConfigurationManager : NetworkObject
 		byte[] buffer = new byte[sizeof (int)];
 		int bysteCount = socket.Receive (buffer);
 		LocalPlayerId = BitConverter.ToInt32 (buffer, 0);
+		Debug.Log ("LocalPlayerId: " + LocalPlayerId);
 	}
 }
