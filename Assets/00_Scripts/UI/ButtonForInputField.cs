@@ -13,7 +13,6 @@ public class ButtonForInputField : MonoBehaviour
     [SerializeField] private Button hostButton;
     [SerializeField] private Button joinButton;
 
-    private bool connectionError = false;
 
     private NetworkManager networkManager;
     
@@ -39,22 +38,58 @@ public class ButtonForInputField : MonoBehaviour
 
     private void StartHost()
     {
-        int port = int.Parse(hostPortInputField.text);
-        networkManager.StartHost(port);
-        Debug.Log("I am the host");
-        SceneManager.LoadScene(2);
+        if (int.TryParse(hostPortInputField.text, out int port))
+        {
+            if (port == 0)
+            {
+                Debug.Log("No Input");
+                return;
+            }
+
+            var hasStartedConnectedToHost = networkManager.StartHost(port);
+            if (hasStartedConnectedToHost)
+            {
+                Debug.Log("I am the host");
+                SceneManager.LoadScene(2);
+            }
+            else
+            {
+                Debug.Log("Can't Connect - Host");
+            }
+        }
+        else
+        {
+            Debug.Log("Invalid Port Format");
+        }
     }
 
     private void StartClient()
     {
         string ip = joinIpInputField.text;
-        int port = int.Parse(joinPortInputField.text);
-        networkManager.StartClient(ip, port);
-        //Debug.Log(ip);
-        //Debug.Log(port);
-        Debug.Log(joinPortInputField);
-        SceneManager.LoadScene(2);
-        
+        if (ip == "")
+        {
+            Debug.Log("No Input");
+            return;
+        }
 
+        if (int.TryParse(joinPortInputField.text, out int port))
+        {
+            Debug.Log($"Attempting to connect to {ip}:{port}");
+            var hasStartedConnectedToClient = networkManager.StartClient(ip, port);
+            if (hasStartedConnectedToClient)
+            {
+                Debug.Log("Connected successfully");
+                SceneManager.LoadScene(2);
+            }
+            else
+            {
+                Debug.Log("Can't Connect - Client");
+            }
+        }
+        else
+        {
+            Debug.Log("Invalid Format Client");
+        }
     }
+    
 }
