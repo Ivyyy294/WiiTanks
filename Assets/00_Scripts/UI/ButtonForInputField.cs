@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ButtonForInputField : MonoBehaviour
@@ -13,6 +13,8 @@ public class ButtonForInputField : MonoBehaviour
     [SerializeField] private Button hostButton;
     [SerializeField] private Button joinButton;
 
+	//Lara Values
+	[SerializeField] UnityEvent startGame;
 
     private NetworkManager networkManager;
     
@@ -50,7 +52,7 @@ public class ButtonForInputField : MonoBehaviour
             if (hasStartedConnectedToHost)
             {
                 Debug.Log("I am the host");
-                SceneManager.LoadScene(2);
+                StartGame();
             }
             else
             {
@@ -79,7 +81,7 @@ public class ButtonForInputField : MonoBehaviour
             if (hasStartedConnectedToClient)
             {
                 Debug.Log("Connected successfully");
-                SceneManager.LoadScene(2);
+                StartGame();
             }
             else
             {
@@ -92,4 +94,9 @@ public class ButtonForInputField : MonoBehaviour
         }
     }
     
+	private void StartGame()
+	{
+		if (startGame != null)
+			startGame.Invoke();
+	}
 }
