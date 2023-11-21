@@ -63,7 +63,7 @@ class NetworkManagerClientState : NetworkManagerState
 		{
 			NetworkObject networkObject = NetworkManager.Me.NetworkObjects[i];
 
-			if (networkObject.Owner)
+			if (networkObject.Owner && networkObject.gameObject.activeInHierarchy)
 				networkPackage.AddValue (GetNetObjectAsValue (i, networkObject));
 		}
 
