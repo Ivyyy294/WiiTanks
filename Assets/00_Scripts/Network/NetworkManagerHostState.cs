@@ -28,7 +28,12 @@ class NetworkManagerHostState : NetworkManagerState
 
 		//Create combined NetworkPackage of all NetworkObjects
 		for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)
-			networkPackage.AddValue (GetNetObjectAsValue (i, NetworkManager.Me.NetworkObjects[i]));
+		{
+			NetworkObject netObj = NetworkManager.Me.NetworkObjects[i];
+
+			if (netObj.gameObject.activeInHierarchy)
+				networkPackage.AddValue (GetNetObjectAsValue (i, netObj));
+		}
 
 		byte[] data = networkPackage.GetSerializedData();
 

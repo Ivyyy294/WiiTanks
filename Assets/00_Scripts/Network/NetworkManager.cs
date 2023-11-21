@@ -40,7 +40,12 @@ public class NetworkManager : MonoBehaviour
 			Debug.Log("Started Host Session");
 			managerState = new NetworkManagerHostState();
 			InitNetworkObjects();
-			return managerState.Start();
+			bool ok = managerState.Start();
+
+			if (!ok)
+				managerState = null;
+
+			return ok;
 		}
 		else
 			return false;
@@ -55,7 +60,12 @@ public class NetworkManager : MonoBehaviour
 			Debug.Log("Started Client Session");
 			managerState = new NetworkManagerClientState(ip);
 			InitNetworkObjects();
-			return managerState.Start();
+			bool ok = managerState.Start();
+
+			if (!ok)
+				managerState = null;
+
+			return ok;
 		}
 		else
 			return false;
