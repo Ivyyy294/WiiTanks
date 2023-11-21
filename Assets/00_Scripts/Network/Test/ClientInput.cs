@@ -7,6 +7,7 @@ public class ClientInput : NetworkObject
 {
     private PlayerInputHandler inputHandler;
     private PlayerInput playerInput;
+    [SerializeField] private GameObject aimIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,13 @@ public class ClientInput : NetworkObject
             playerInput.enabled = true;
             inputHandler.enabled = true;
         }
-    }
 
+        if (!Owner)
+        {
+            aimIndicator.SetActive(false);
+        }
+        
+    }
 
     protected override void SetPackageData()
     {

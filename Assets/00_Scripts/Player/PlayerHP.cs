@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHP : MonoBehaviour, ICollideEvent
 {
-    private float health;
+    public float health;
     [SerializeField] private float maxHealth;
 
     public float Health
