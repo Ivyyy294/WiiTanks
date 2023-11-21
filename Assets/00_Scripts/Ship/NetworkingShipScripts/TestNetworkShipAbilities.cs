@@ -8,7 +8,11 @@ public class TestNetworkShipAbilities : NetworkObject
 
     private PlayerInputHandler inputHandler;
 
-    private float timerCooldown, cooldown;
+
+    [SerializeField]
+    private float cooldown = 1;
+    private float timerCooldown;
+        
 
     protected override void SetPackageData()
     {
@@ -21,7 +25,6 @@ public class TestNetworkShipAbilities : NetworkObject
     void Start()
     {
         inputHandler = GetComponent<PlayerInputHandler>();
-
     }
 
 
