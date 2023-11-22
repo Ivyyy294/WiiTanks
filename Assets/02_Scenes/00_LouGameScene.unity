@@ -496,17 +496,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 166977712009180782, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834934327178469948, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 2751626744163177299, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
       propertyPath: m_Name
       value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 2751626744163177299, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2805652420236552212, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2399266211
       objectReference: {fileID: 0}
+    - target: {fileID: 4017714935294983405, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560037974977422709, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5009686993351144965, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 4056164383
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639105905326488420, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796154193905167161, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851376400643178676, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8453992481833405909, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -555,6 +587,14 @@ PrefabInstance:
     - target: {fileID: 8676230314421411428, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710410058359812851, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8945668275941308517, guid: 9b143622db6a30f44bf32f4c236449be, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

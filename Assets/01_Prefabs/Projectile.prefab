@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 8
   damage: 10
+  colliderParent: {fileID: 0}

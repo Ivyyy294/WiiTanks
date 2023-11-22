@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TestNetworkShipAbilities : NetworkObject
 {
-    public GameObject projectilePrefab;
+    // public GameObject projectilePrefab;
 
     private PlayerInputHandler inputHandler;
-
+    private Collider _collider;
+    [SerializeField] private Projectile projectile;
 
     [SerializeField]
     private float cooldown = 1;
@@ -25,6 +26,8 @@ public class TestNetworkShipAbilities : NetworkObject
     void Start()
     {
         inputHandler = GetComponent<PlayerInputHandler>();
+        _collider = GetComponent<Collider>();
+
     }
 
 
@@ -66,7 +69,9 @@ public class TestNetworkShipAbilities : NetworkObject
     {
         projectileDirection.Normalize();
         Quaternion projectileAngle = Quaternion.LookRotation(projectileDirection);
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, projectileAngle);
-
+        Projectile projectileCopy = Instantiate(projectile, transform.position, projectileAngle);
+            //  projectileCopy.SetOwner(_collider);
+            projectileCopy.colliderParent = _collider;
+        Debug.Log(_collider);
     }
 }

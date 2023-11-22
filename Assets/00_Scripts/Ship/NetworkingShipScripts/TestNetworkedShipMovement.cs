@@ -9,20 +9,11 @@ public class TestNetworkedShipMovement : NetworkObject
 	[SerializeField] private float playerSpeed = 1.0f;
 	private PlayerInputHandler inputHandler;
 
-	[SerializeField] float speed = 5f;
-	
 
 	private void Start()
 	{
 		controller = GetComponent<CharacterController>();
-
-      
-
-			inputHandler = GetComponent<PlayerInputHandler>();
-		
-        
-			
-		
+		inputHandler = GetComponent<PlayerInputHandler>();
 	}
 
 	protected override void SetPackageData()
@@ -31,7 +22,6 @@ public class TestNetworkedShipMovement : NetworkObject
 		networkPackage.AddValue(new NetworkPackageValue(controller.transform.position.y));
 		networkPackage.AddValue(new NetworkPackageValue(controller.transform.position.z));
 		networkPackage.AddValue(new NetworkPackageValue(controller.transform.eulerAngles.y));
-
 	}
 
 	private void Update()
