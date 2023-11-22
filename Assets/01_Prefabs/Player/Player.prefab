@@ -5504,7 +5504,7 @@ GameObject:
   - component: {fileID: 3351093411542518082}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5781,7 +5781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35c5cbc18d6896448dca18529e2fa61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2783548849352094086, guid: 6ab739d31b97cf04785a8171f9e57df2, type: 3}
+  projectile: {fileID: 444945968200305396, guid: 6ab739d31b97cf04785a8171f9e57df2, type: 3}
   cooldown: 1
 --- !u!114 &2419561790598387418
 MonoBehaviour:
