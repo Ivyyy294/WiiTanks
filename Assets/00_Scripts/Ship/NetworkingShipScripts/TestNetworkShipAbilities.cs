@@ -9,6 +9,7 @@ public class TestNetworkShipAbilities : NetworkObject
     private PlayerInputHandler inputHandler;
     private Collider _collider;
     [SerializeField] private Projectile projectile;
+    [SerializeField] private Transform projectileSpawnPosition;
 
     [SerializeField]
     private float cooldown = 1;
@@ -69,7 +70,7 @@ public class TestNetworkShipAbilities : NetworkObject
     {
         projectileDirection.Normalize();
         Quaternion projectileAngle = Quaternion.LookRotation(projectileDirection);
-        Projectile projectileCopy = Instantiate(projectile, transform.position, projectileAngle);
+        Projectile projectileCopy = Instantiate(projectile, projectileSpawnPosition.position, projectileAngle);
             //  projectileCopy.SetOwner(_collider);
             //   projectileCopy.colliderParent = _collider;
        
