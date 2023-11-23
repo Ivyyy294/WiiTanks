@@ -191,6 +191,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &648578909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 293788420225938152, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+  m_PrefabInstance: {fileID: 8251571149342912910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &741802552
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +294,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762477669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3400225897530966029, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+  m_PrefabInstance: {fileID: 8251571149342912910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &896561071 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1234454343171798618, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
@@ -303,6 +325,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &962193192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5268385224054153726, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+  m_PrefabInstance: {fileID: 8251571149342912910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1483302106 stripped
@@ -457,6 +490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 555088841942749442, guid: f317ee3f97332764793d2fd6442df9a4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3883849651836079287, guid: f317ee3f97332764793d2fd6442df9a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -563,6 +600,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 896561071}
     - target: {fileID: 6088556959074936335, guid: e625e06a30f1f2844a47a08be9851c83, type: 3}
+      propertyPath: invalidInputText
+      value: 
+      objectReference: {fileID: 762477669}
+    - target: {fileID: 6088556959074936335, guid: e625e06a30f1f2844a47a08be9851c83, type: 3}
       propertyPath: joinIpInputField
       value: 
       objectReference: {fileID: 1483302106}
@@ -574,6 +615,14 @@ PrefabInstance:
       propertyPath: joinPortInputField
       value: 
       objectReference: {fileID: 611674093}
+    - target: {fileID: 6088556959074936335, guid: e625e06a30f1f2844a47a08be9851c83, type: 3}
+      propertyPath: cannotConnectToHostText
+      value: 
+      objectReference: {fileID: 962193192}
+    - target: {fileID: 6088556959074936335, guid: e625e06a30f1f2844a47a08be9851c83, type: 3}
+      propertyPath: cannotConnectToClientText
+      value: 
+      objectReference: {fileID: 648578909}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -666,6 +715,38 @@ PrefabInstance:
     - target: {fileID: 212181904009817536, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 293788420225938152, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400225897530966029, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400225897530966029, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190335
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958052527471124863, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5268385224054153726, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5268385224054153726, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190335
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012183665881850385, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_Name
+      value: CannotTextClient
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012183665881850385, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8691340444549389719, guid: b2cd643f56184f64289a938bd241dce9, type: 3}
       propertyPath: m_Name

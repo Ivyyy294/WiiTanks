@@ -12,6 +12,9 @@ public class ButtonForInputField : MonoBehaviour
     [SerializeField] private TMP_InputField joinPortInputField;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button joinButton;
+    [SerializeField] private TMP_Text cannotConnectToHostText;
+    [SerializeField] private TMP_Text cannotConnectToClientText;
+    [SerializeField] private TMP_Text invalidInputText;
 
 	//Lara Values
 	[SerializeField] UnityEvent startGame;
@@ -25,7 +28,9 @@ public class ButtonForInputField : MonoBehaviour
         networkManager = NetworkManager.Me;
         /*Button toggleButton = GetComponent<Button>();
         toggleButton.onClick.AddListener(ToggleGameObject);*/
-        
+        cannotConnectToClientText.gameObject.SetActive(false);
+        cannotConnectToHostText.gameObject.SetActive(false);
+        invalidInputText.gameObject.SetActive(false);
         hostButton.onClick.AddListener(StartHost);
         joinButton.onClick.AddListener(StartClient);
     }
@@ -45,6 +50,8 @@ public class ButtonForInputField : MonoBehaviour
             if (port == 0)
             {
                 Debug.Log("No Input");
+                invalidInputText.gameObject.SetActive(true);
+                StartCoroutine(HideTextDelay(invalidInputText, 2f));
                 return;
             }
 
@@ -57,10 +64,14 @@ public class ButtonForInputField : MonoBehaviour
             else
             {
                 Debug.Log("Can't Connect - Host");
+                cannotConnectToHostText.gameObject.SetActive(true);
+                StartCoroutine(HideTextDelay(cannotConnectToHostText, 2f));
             }
         }
         else
         {
+            invalidInputText.gameObject.SetActive(true);
+            StartCoroutine(HideTextDelay(invalidInputText, 2f));
             Debug.Log("Invalid Port Format");
         }
     }
@@ -71,6 +82,8 @@ public class ButtonForInputField : MonoBehaviour
         if (ip == "")
         {
             Debug.Log("No Input");
+            invalidInputText.gameObject.SetActive(true);
+            StartCoroutine(HideTextDelay(invalidInputText, 2f));
             return;
         }
 
@@ -86,10 +99,14 @@ public class ButtonForInputField : MonoBehaviour
             else
             {
                 Debug.Log("Can't Connect - Client");
+                cannotConnectToClientText.gameObject.SetActive(true);
+                StartCoroutine(HideTextDelay(cannotConnectToClientText, 2f));
             }
         }
         else
         {
+            invalidInputText.gameObject.SetActive(true);
+            StartCoroutine(HideTextDelay(invalidInputText, 2f));
             Debug.Log("Invalid Format Client");
         }
     }
@@ -99,4 +116,10 @@ public class ButtonForInputField : MonoBehaviour
 		if (startGame != null)
 			startGame.Invoke();
 	}
+
+    private IEnumerator HideTextDelay(TMP_Text text, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        text.gameObject.SetActive(false);
+    }
 }
