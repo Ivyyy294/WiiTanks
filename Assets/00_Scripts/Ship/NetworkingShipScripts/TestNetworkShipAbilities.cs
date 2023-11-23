@@ -71,7 +71,7 @@ public class TestNetworkShipAbilities : NetworkObject
         Quaternion projectileAngle = Quaternion.LookRotation(projectileDirection);
         Projectile projectileCopy = Instantiate(projectile, transform.position, projectileAngle);
             //  projectileCopy.SetOwner(_collider);
-            projectileCopy.colliderParent = _collider;
-        Debug.Log(_collider);
+            //   projectileCopy.colliderParent = _collider;
+       
     }
 }

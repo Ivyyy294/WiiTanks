@@ -60,7 +60,7 @@ public class PlayerConfigurationManager : NetworkObject
 
 	void OnClientConnected(int clientNumber, Socket socket)
 	{
-		//Send client player index to client
+		//Send client player index to client	
 		Debug.Log ("Send Client player id: " + clientNumber);
 		socket.Send (BitConverter.GetBytes (clientNumber));
 	}

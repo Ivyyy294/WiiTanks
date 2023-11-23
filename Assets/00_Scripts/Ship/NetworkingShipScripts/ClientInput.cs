@@ -18,11 +18,14 @@ public class ClientInput : NetworkObject
         {
             playerInput.enabled = true;
             inputHandler.enabled = true;
+            gameObject.tag = "Player";
+            gameObject.layer = 3;
         }
 
         if (!Owner)
         {
             aimIndicator.SetActive(false);
+            gameObject.tag = "EnemyPlayer";
         }
         
     }
