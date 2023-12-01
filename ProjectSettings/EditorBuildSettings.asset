@@ -5,26 +5,29 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/00_GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/01_Menu.unity
     guid: 077740116b45d964899d3f429817037e
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/02_LouScene 1.unity
     guid: c75c90c0abb09394187803cb6866b2ca
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/03_MaurekaScene 2.unity
     guid: 6fd9b527dbde5e94c914856908c06bcc
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/04_Felix.unity
     guid: 62cb23cd8f7deb04fb73eafb00c74759
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/05_LaraScene.unity
     guid: 23ca151039e464e4bb52d55d2b8f8d66
-  - enabled: 1
+  - enabled: 0
     path: Assets/02_Scenes/06_Lobby.unity
     guid: c84695560fda553409cbf4c39999be37
+  - enabled: 1
+    path: Assets/02_Scenes/00_LouGameScene.unity
+    guid: ffa699302502f744b83dec8ef74f99d3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e13a803d9ab4ed6499a0929895ffcb10, type: 2}
