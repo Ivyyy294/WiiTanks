@@ -24,7 +24,7 @@ class NetworkUdpClientThread : NetworkWorkerThread
 			if (udpClient.Available > 0)
 			{
 				byte[] data = udpClient.Receive (ref localEndPoint);
-				networkPackage.ReadBytes (data);
+				networkPackage.DeserializeData (data);
 
 				//For each Value in networkPackage
 				for (int i = 0; i < networkPackage.Count; ++i)
