@@ -24,7 +24,7 @@ class NetworkManagerHostState : NetworkManagerState
 
 	public override void Update()
 	{
-		NetworkPackage networkPackage = new NetworkPackage();
+		 networkPackage.Clear();
 
 		//Create combined NetworkPackage of all NetworkObjects
 		for (int i = 0; i < NetworkManager.Me.NetworkObjects.Count; ++i)

@@ -26,7 +26,7 @@ public abstract class NetworkObject : MonoBehaviour
 	public bool DeserializeData (byte[] rawData)
 	{
 		NetworkPackage backBuffer = GetBackBuffer();
-		bool ok = backBuffer.ReadBytes(rawData);
+		bool ok = backBuffer.DeserializeData(rawData);
 		SwapBuffer();
 		return ok;
 	}
@@ -37,6 +37,7 @@ public abstract class NetworkObject : MonoBehaviour
 	protected NetworkPackage networkPackage;
 
 	//Private values
+	//Double buffer is probably unessescary at this point and a relict of iterations
 	private NetworkPackage backBuffer1 = new NetworkPackage();
 	private NetworkPackage backBuffer2 = new NetworkPackage();
 

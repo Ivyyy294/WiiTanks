@@ -9,7 +9,6 @@ class NetworkManagerClientState : NetworkManagerState
 	private string ip;
 	Socket socket = null;
 	NetworkUdpClientThread udpClientThread = null;
-	NetworkPackage networkPackage = new NetworkPackage();
 
 	public NetworkManagerClientState (string _ip) {ip = _ip;}
 	~NetworkManagerClientState()

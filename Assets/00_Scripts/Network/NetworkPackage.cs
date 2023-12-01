@@ -63,7 +63,7 @@ public class NetworkPackage
 	}
 
 	//Private Functions
-	public bool ReadBytes(byte[] bytes)
+	public bool DeserializeData(byte[] bytes)
 	{
 		int index = 0;
 		valueList.Clear();
