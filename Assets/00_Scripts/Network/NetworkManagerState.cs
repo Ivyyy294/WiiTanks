@@ -10,7 +10,7 @@ public abstract class NetworkManagerState
 
 	//Protected Values
 	protected const int idOffset = sizeof (int);
-	protected NetworkPackage networkPackage;
+	protected NetworkPackage networkPackage = new NetworkPackage();
 
 	//Public Methods
 	//Reconstructs a NetworkObject from the given NetworkPackageValue
