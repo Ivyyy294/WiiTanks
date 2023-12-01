@@ -5898,7 +5898,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8906145074527899418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c07db9ee0fe812409e87d07a2113ba7, type: 3}
   m_Name: 
@@ -5964,6 +5964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 444945968200305396, guid: 6ab739d31b97cf04785a8171f9e57df2, type: 3}
+  aimArrow: {fileID: 786434814200611439}
   projectileSpawnPosition: {fileID: 4650423384644684982}
   cooldown: 2
 --- !u!114 &3114999715303733895

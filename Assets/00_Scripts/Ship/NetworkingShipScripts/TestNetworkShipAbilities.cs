@@ -9,10 +9,9 @@ public class TestNetworkShipAbilities : NetworkObject
     private PlayerInputHandler inputHandler;
     private Collider _collider;
     [SerializeField] private Projectile projectile;
+    [SerializeField] private GameObject aimArrow;
     [SerializeField] private Transform projectileSpawnPosition;
-
-    [SerializeField]
-    private float cooldown = 1;
+    [SerializeField] private float cooldown = 1;
     private float timerCooldown;
         
 
@@ -37,13 +36,16 @@ public class TestNetworkShipAbilities : NetworkObject
     {
         if (Owner)
         {
+            Vector3 lookDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
+            aimArrow.transform.forward = lookDirection;
+
             timerCooldown += Time.deltaTime;
             if (timerCooldown > cooldown)
             {
                 if (inputHandler.shoot == true)
                 {
-                    Vector3 projectileDirection = new Vector3(inputHandler.lookInput.x, 0, inputHandler.lookInput.y);
-                    Shoot(projectileDirection);
+                  
+                    Shoot(lookDirection);
                     timerCooldown = 0;
                 }
             }
@@ -52,27 +54,31 @@ public class TestNetworkShipAbilities : NetworkObject
         {
             bool isShooting = networkPackage.Value(2).GetBool();
 
-            Vector3 projectileDirection = Vector3.zero;
-            projectileDirection.x = networkPackage.Value(0).GetFloat();
-            projectileDirection.y = 0;
-            projectileDirection.z = networkPackage.Value(1).GetFloat();
+            Vector3 lookDirection = Vector3.zero;
+            lookDirection.x = networkPackage.Value(0).GetFloat();
+            lookDirection.y = 0;
+            lookDirection.z = networkPackage.Value(1).GetFloat();
+
+            aimArrow.transform.forward = lookDirection;
 
             timerCooldown += Time.deltaTime;
             if (isShooting && timerCooldown > cooldown)
             {
-                Shoot(projectileDirection);
+                Shoot(lookDirection);
                 timerCooldown = 0;
             }
         }
     }
 
-    private void Shoot(Vector3 projectileDirection)
+    private void Shoot(Vector3 lookDirection)
     {
-        projectileDirection.Normalize();
-        Quaternion projectileAngle = Quaternion.LookRotation(projectileDirection);
+        lookDirection.Normalize();
+        Quaternion projectileAngle = Quaternion.LookRotation(lookDirection);
         Projectile projectileCopy = Instantiate(projectile, projectileSpawnPosition.position, projectileAngle);
             //  projectileCopy.SetOwner(_collider);
             //   projectileCopy.colliderParent = _collider;
        
     }
+
+  
 }
